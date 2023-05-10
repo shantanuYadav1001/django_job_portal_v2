@@ -1,0 +1,87 @@
+{% extends 'new/base.html' %}
+{% load static %}
+
+<!-- ================================
+Start SEO blocks
+================================= -->
+{% block title %}{% endblock %}
+{% block decription %}{% endblock %}
+{% block keywords %}{% endblock %}
+<!-- ================================
+END SEO blocks
+================================= -->
+
+<!-- ================================
+Start CSS blocks
+================================= -->
+{% block extend_header %}{% endblock %}
+<!-- ================================
+END CSS blocks
+================================= -->
+
+<!-- ================================
+Start script blocks
+================================= -->
+{% block extend_footer %}{% endblock %}
+<!-- ================================
+END script blocks
+================================= -->
+
+<!-- ================================
+Start Content
+================================= -->
+{% block content %}
+
+<section class="section-hero overlay inner-page bg-image" id="home-section">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-7">
+          <h1 class="text-white font-weight-bold">Add new Job</h1>
+          <div class="custom-breadcrumbs">
+            <a href="{% url 'users:home' %}">Home</a> <span class="mx-2 slash">/</span>
+            <span class="text-white"><strong>Add job</strong></span>
+          </div>
+        </div>
+      </div>
+    </div>
+</section>
+
+<section class="site-section">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col">
+          <h2 class="mb-4">Add new job form</h2>
+          <script src="//cdn.ckeditor.com/4.21.0/standard/ckeditor.js"></script>
+          
+          <form action="#" method="post" class="p-4 border rounded" enctype='multipart/form-data'>
+            {% csrf_token %}
+            {{form.media}}
+            {{ form.as_p }}
+            
+            <!--
+            <div class="row form-group">
+              <div class="col-md-12 mb-3 mb-md-0">
+                <label class="text-black" for="fname">Email</label>
+                <input type="text" id="fname" class="form-control" placeholder="Email address">
+              </div>
+            </div>
+            <div class="row form-group mb-4">
+              <div class="col-md-12 mb-3 mb-md-0">
+                <label class="text-black" for="fname">Password</label>
+                <input type="password" id="fname" class="form-control" placeholder="Password">
+              </div>
+            </div>
+            -->
+            <div class="row form-group justify-content-center mt-5">
+              <div class="col-md-12 text-center">
+                <input type="submit" value="Create Job" class="btn  btn-primary btn-block text-white">
+              </div>
+            </div>
+            
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+{% endblock %}

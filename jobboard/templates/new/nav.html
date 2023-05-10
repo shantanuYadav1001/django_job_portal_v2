@@ -1,0 +1,71 @@
+{% load static %}
+<!-- ================================
+Start Navigation Bar
+================================= -->
+
+
+<div class="site-mobile-menu site-navbar-target">
+    <div class="site-mobile-menu-header">
+        <div class="site-mobile-menu-close mt-3">
+            <span class="icon-close2 js-menu-toggle"></span>
+        </div>
+    </div>
+    <div class="site-mobile-menu-body"></div>
+</div> <!-- .site-mobile-menu -->
+
+
+<!-- NAVBAR -->
+<header class="site-navbar mt-3">
+    <div class="container-fluid">
+        <div class="row align-items-center">
+            <div class="site-logo col-6"><a href="index.html">JobFinder</a></div>
+
+            <nav class="mx-auto site-navigation">
+                <ul class="site-menu js-clone-nav d-none d-xl-block ml-0 pl-0">
+                    
+                    <li><a href="{% url 'users:home' %}" class="nav-link active">Home</a></li>
+                    
+                    <li><a href="#">About</a></li>
+
+                    <li><a href="#">Contact</a></li>
+                
+                {% if is_logged_in %}    
+                    {% if is_employer %}
+                        <li><a href="{% url 'users:employer_job_list' %}">My Jobs</a></li>
+                    {% else %}
+                        <li><a href="{% url 'users:my_applications' %}">My Applications</a></li>
+                    {% endif %}
+                {% endif %}
+                
+                
+                </ul>
+            </nav>
+
+            <div class="right-cta-menu text-right d-flex aligin-items-center col-6">
+                <div class="ml-auto">
+                    {% if is_logged_in %}
+                        {% if is_employer %}
+                            <a href="{% url 'users:job_post' %}" class="btn btn-outline-white border-width-2 d-none d-lg-inline-block"><span
+                            class="mr-2 icon-add"></span>Post a Job</a>  
+                        {% endif %}
+                        <a href="{% url 'users:logout' %}" class="btn btn-primary border-width-2 d-none d-lg-inline-block"><span
+                        class="mr-2 icon-lock_outline"></span>Log Out</a>
+                        
+                    {% else %}
+                        <a href="{% url 'users:applicant_login' %}" class="btn btn-primary border-width-2 d-none d-lg-inline-block"><span
+                        class="mr-2 icon-lock_outline"></span>Log In</a>
+                        <a href="{% url 'users:applicant_register' %}" class="btn btn-primary border-width-2 d-none d-lg-inline-block"><span
+                            class="mr-2 icon-lock_outline"></span>Sign Up</a>
+                    {% endif %}
+
+                </div>
+                <a href="#" class="site-menu-toggle js-menu-toggle d-inline-block d-xl-none mt-lg-2 ml-3"><span
+                        class="icon-menu h3 m-0 p-0 mt-2"></span></a>
+            </div>
+
+        </div>
+    </div>
+</header>
+<!-- ================================
+End Navigation Bar
+================================= -->

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Job Applications for "{{ job.job_title }}"</h1>
+
+{% if job_applications %}
+    <table>
+        <thead>
+            <tr>
+                <th>Sr.No</th>
+                <th>First</th>
+                <th>Email</th>
+                <th>Resume</th>
+                <th>Applied On</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for job_application in job_applications %}
+            <tr>
+                <td>{{ job_application.name }}</td>
+                <td>{{ job_application.email }}</td>
+                <td><a href="{{ job_application.resume.url }}">Download Resume</a></td>
+                <td>{{ job_application.applied_on }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    
+
+	</div>
+{% else %}
+    <h2>No Applicants Yet !!</h2>
+{% endif %}
+</body>
+</html>

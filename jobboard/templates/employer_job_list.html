@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Your job listings</h1>
+    {% if jobs %}
+    <ul>
+      {% for job in jobs %}
+      <li>
+        <h2>{{ job.job_title }}</h2>
+        <p>{{ job.job_description|safe }}</p>
+        <p>{{ job.location }}</p>
+        <p>{{ job.job_type }}</p>
+        <p>{{ job.company_name }}</p>
+        <p>{{ job.company_description|safe }}</p>
+        <p>{{ job.last_date_of_application }}</p>
+        <img src="{{ job.featured_image.url }}" alt="{{ job.title }}" width="300" height="300">
+        
+      </li>
+      {% endfor %}
+    </ul>
+    {% else %}
+    <p>You haven't posted any jobs yet.</p>
+    {% endif %}
+  </body>
+  
+</html>

@@ -1,0 +1,103 @@
+{% extends 'new/base.html' %}
+{% load static %}
+
+<!-- ================================
+Start SEO blocks
+================================= -->
+{% block title %}{% endblock %}
+{% block decription %}{% endblock %}
+{% block keywords %}{% endblock %}
+<!-- ================================
+END SEO blocks
+================================= -->
+
+<!-- ================================
+Start CSS blocks
+================================= -->
+{% block extend_header %}{% endblock %}
+<!-- ================================
+END CSS blocks
+================================= -->
+
+<!-- ================================
+Start script blocks
+================================= -->
+{% block extend_footer %}{% endblock %}
+<!-- ================================
+END script blocks
+================================= -->
+
+<!-- ================================
+Start Content
+================================= -->
+{% block content %}
+
+<section class="section-hero overlay inner-page bg-image" id="home-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-7">
+                <h1 class="text-white font-weight-bold">Job Applications for</h1>
+                <h1 class="text-white font-weight-bold">"{{ job.job_title }}"</h1>
+                <div class="custom-breadcrumbs">
+                    <a href="{% url 'users:home' %}">Home</a> <span class="mx-2 slash">/</span>
+                    <span class="text-white"><strong>job applications</strong></span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section class="site-section">
+    <div class="container-xxl"  >
+        {% if job_applicants %}
+        <div class="row mb-5 justify-content-center">
+            <div class="col-md-7 text-center">
+                <h2 class="section-title mb-2">Applicants</h2>
+            </div>
+        </div>
+        <div class="container d-flex justify-content-center mt-4" style="width:100%">
+
+            <table class="table align-middle table-bordered border-secondary">
+                <thead class="table-dark">
+                    <tr class="text-center">
+                        <th scope="col" style="width: 2%;">Sr No</th>
+                        <th scope="col" style="width: 15%;">Full Name</th>
+                        <th scope="col" style="width: 20%;">Email</th>
+                        <th scope="col" style="width: 5%;">Gender</th>
+                        <th scope="col" style="width: 15%;">Phone no</th>
+                        <th scope="col" style="width: 15%;">Resume</th>
+                        <th scope="col" style="width: 15%;">Address</th>
+                        <th scope="col" style="width: 20%;">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for application in job_applicants %}
+                    <tr class="text-center">
+                        <td>{{forloop.counter}}</td>
+                        <td>{{ application.first_name }}
+                            {{ application.last_name }}</td>
+                        <td>{{ application.email }}</td>
+                        <td>{{ application.gender }}</td>
+                        <td>{{ application.phone_no }}</td>
+                        <td><a href="{{ application.resume.url }}">Download Resume</a></td>
+                        <td>{{ applicant.address }}</td>
+                        <td>
+                            <a href="{% url 'users:application_detail' application.id %}" class="btn btn-outline-primary">View</a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        {% else %}
+        <div class="row mb-5 justify-content-center">
+            <div class="col-md-7 text-center">
+                <h2 class="section-title mb-2">No Applications Yet</h2>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+</section>
+
+{% endblock %}
